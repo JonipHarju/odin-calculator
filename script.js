@@ -5,6 +5,9 @@ const operatorButtons = document.querySelectorAll(".operatorButton");
 const decimalButton = document.querySelector(".decimal");
 const clearButton = document.querySelector(".clearButton");
 
+// a function that populates the display when you click the number buttons.
+function populateDisplay() {}
+
 // function that adds two values together
 function add(value1, value2) {
   return value1 + value2;
@@ -33,10 +36,12 @@ function operate(operator, value1, value2) {
   if (operator === "-") {
     return subtract(value1, value2);
   }
-  if (operator === "÷") {
+  if (operator === "/") {
     return divide(value1, value2);
   }
-  if (operator === "×") {
+  if (operator === "*") {
     return multiply(value1, value2);
   }
 }
+
+console.log(operate("+", 5, 5));
