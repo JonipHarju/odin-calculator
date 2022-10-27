@@ -55,6 +55,7 @@ button {
   height: 100px;
   background-color: lightcoral;
   color: black;
+  box-shadow: 0.5px 0.5px;
   font-size: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -69,24 +70,29 @@ button {
 button:hover {
   cursor: pointer;
   background-color: coral;
-  color: white;
-}
-.operatorButton:hover {
-  background-color: lightcoral;
+  color: black;
+  box-shadow: 0px 0px;
 }
 
 .displayContainer {
+  width: 100%;
   padding: 20px;
 }
-.display {
+#display {
   display: flex;
   justify-content: flex-end;
-  width: 416px;
+  flex-wrap: wrap;
+  width: 100%;
   color: black;
   /* border-style: solid;
   border-color: white; */
   height: 100px;
   font-size: 40px;
+  white-space: initial;
+}
+
+#resultDisplay {
+  font-size: 30px;
 }
 @media only screen and (max-width: 850px) {
   .display {
