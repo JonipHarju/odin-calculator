@@ -7,6 +7,7 @@ const clearButton = document.querySelector(".clearButton");
 const buttons = document.querySelectorAll("button");
 const equalsButton = document.querySelector("#equals");
 const resultlDisplay = document.querySelector("#resultDisplay");
+const previousNumberDisplay = document.querySelector("#previousNumberDisplay");
 
 // disables the operator buttons so user cant enter operator before they enter a number
 document.getElementById("multiply").disabled = true;
@@ -49,6 +50,7 @@ operatorButtons.forEach((operatorButton) => {
     displayValue = "";
     displayValue += operatorButton.textContent;
     operator += operatorButton.id;
+    document.getElementById("previousNumberDisplay").textContent += number1;
     document.getElementById("display").textContent = displayValue;
     document.getElementById("multiply").disabled = true;
     document.getElementById("add").disabled = true;
@@ -83,6 +85,8 @@ function clear() {
   displayValue = "";
   operator = "";
   number1 = undefined;
+  document.getElementById("previousNumberDisplay").textContent = "";
+
   document.getElementById("multiply").disabled = true;
   document.getElementById("add").disabled = true;
   document.getElementById("divide").disabled = true;

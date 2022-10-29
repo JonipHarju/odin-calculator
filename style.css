@@ -90,10 +90,18 @@ button:hover {
   font-size: 40px;
   white-space: initial;
 }
-
 #resultDisplay {
   font-size: 30px;
 }
+
+#previousNumberDisplay {
+  background-color: black;
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+  font-size: 40px;
+}
+
 @media only screen and (max-width: 850px) {
   .display {
     display: flex;
