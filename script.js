@@ -22,6 +22,7 @@ let number1;
 let number2;
 let operator = "";
 let result = "";
+let equalsChecK = 0;
 
 // event listener to add numbers into the display and after inputting the number to the display we enable the operator buttons
 numberButtons.forEach((numberButton) => {
@@ -32,25 +33,39 @@ numberButtons.forEach((numberButton) => {
     document.getElementById("add").disabled = false;
     document.getElementById("divide").disabled = false;
     document.getElementById("subtract").disabled = false;
+
+    // if statement to check whether to unlock the equals button and lock the operator buttons when we have operator value assigned
     if (
-      (number1 >= 0 && operator === "multiply") ||
+      operator === "multiply" ||
       operator === "divide" ||
       operator === "add" ||
       operator === "subtract"
     ) {
       document.getElementById("equals").disabled = false;
+      document.getElementById("multiply").disabled = true;
+      document.getElementById("add").disabled = true;
+      document.getElementById("divide").disabled = true;
+      document.getElementById("subtract").disabled = true;
+    }
+
+    // clears the previousNumberDisplay from the last calculations so that new number may be inputted
+    if (equalsChecK > 0) {
+      previousNumberDisplay.textContent = "";
+      equalsChecK = 0;
     }
   });
 });
 
 // event listener for the operator buttons
+// makes number1 equals to displayvalue then clears displayvalue. adds number1 to the previousnumberdisplay with the operator
+// assings the pressed operator to the operator variable. then disables all the opeator buttons again.
 operatorButtons.forEach((operatorButton) => {
   operatorButton.addEventListener("click", () => {
     number1 = displayValue;
     displayValue = "";
-    displayValue += operatorButton.textContent;
+    previousNumberDisplay.textContent += number1;
+    previousNumberDisplay.textContent += operatorButton.textContent;
     operator += operatorButton.id;
-    document.getElementById("previousNumberDisplay").textContent += number1;
     document.getElementById("display").textContent = displayValue;
     document.getElementById("multiply").disabled = true;
     document.getElementById("add").disabled = true;
@@ -69,15 +84,25 @@ equalsButton.addEventListener("click", () => {
   equals();
 });
 
-// function to calculate the result. first removes non numbers from number2 then makes number1 and 2 a number then
+// function to calculate the result. number2 gets value that is displayValue without other marks than numbers
 function equals() {
+  previousNumberDisplay.textContent += displayValue;
+  display.textContent = "";
   number2 = displayValue.replace(/\D+/g, "");
   number1 = Number(number1);
   number2 = Number(number2);
+
   let result = operate(operator, number1, number2);
   console.log(result);
   populateResultDisplay(result);
-  clear();
+  newCalculation();
+  equalsChecK++;
+}
+
+function newCalculation() {
+  displayValue = "";
+  operator = "";
+  number1 = undefined;
 }
 // function to reset the variables back to default values and to disable operator buttons
 function clear() {
@@ -85,8 +110,9 @@ function clear() {
   displayValue = "";
   operator = "";
   number1 = undefined;
-  document.getElementById("previousNumberDisplay").textContent = "";
 
+  document.getElementById("previousNumberDisplay").textContent = "";
+  resultlDisplay.textContent = "";
   document.getElementById("multiply").disabled = true;
   document.getElementById("add").disabled = true;
   document.getElementById("divide").disabled = true;

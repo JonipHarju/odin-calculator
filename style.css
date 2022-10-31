@@ -91,14 +91,15 @@ button:hover {
   white-space: initial;
 }
 #resultDisplay {
-  font-size: 30px;
+  font-size: 50px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 #previousNumberDisplay {
-  background-color: black;
+  color: black;
   display: flex;
-  justify-content: flex-end;
-  color: white;
+  justify-content: flex-start;
   font-size: 40px;
 }
 
